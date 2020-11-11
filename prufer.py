@@ -31,7 +31,9 @@ def get_deg_1(degree: list):
         j += 1
     degree[j] -= 1
     return j
+
 line = input().split()
+
 prufer = build_prufer(int(line[0]))
-print(prufer)
+
 print(build_tree(build_degree(prufer), prufer))
