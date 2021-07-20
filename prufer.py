@@ -1,17 +1,19 @@
-import random
-def build_prufer(n: int):
+from random import randint
+
+def build_prufer(n: int) -> list:
     prufer = []
     for _ in range(n):
-        prufer.append(random.randint(0, n-1))
+        prufer.append(randint(0, n-1))
     return prufer 
-def build_degree(prufer: list):
+
+def build_degree(prufer: list) -> list:
     n = len(prufer)
     degree = [1] * (n + 2)
     for i in range(n):
         degree[prufer[i]] += 1
     return degree
 
-def build_tree(degree: list, prufer: list):
+def build_tree(degree: list, prufer: list) -> list:
     n =  len(prufer)
     tree = [[] for _ in range(len(degree))]
     for i in range(n):
@@ -25,15 +27,17 @@ def build_tree(degree: list, prufer: list):
     tree[j1].append(j)
     return tree
 
-def get_deg_1(degree: list):
+def get_deg_1(degree: list) -> int:
     j = 0
     while not degree[j] == 1:
         j += 1
     degree[j] -= 1
     return j
 
-line = input().split()
+if __name__ == "__main__":
+    
+    line = input().split()
 
-prufer = build_prufer(int(line[0]))
+    prufer = build_prufer(int(line[0]))
 
-print(build_tree(build_degree(prufer), prufer))
+    print(build_tree(build_degree(prufer), prufer))
